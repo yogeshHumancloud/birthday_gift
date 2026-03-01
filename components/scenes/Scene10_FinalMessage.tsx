@@ -99,12 +99,12 @@ export default function Scene10_FinalMessage({ isActive }: SceneProps) {
           </motion.h1>
 
           <motion.p
-            className="font-hand text-9xl md:text-9xl text-flipbook-pink mt-8"
+            className="font-hand text-8xl md:text-9xl text-flipbook-pink mt-8"
             initial={{ opacity: 0, y: 10 }}
             animate={isActive ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.6, duration: 0.8 }}
           >
-            Shardha
+            Shradha
           </motion.p>
 
           <motion.div
