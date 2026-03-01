@@ -1,26 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fdf6e3;
+  --foreground: #3c2415;
+  --flipbook-cream: #fdf6e3;
+  --flipbook-warm: #f5e6d0;
+  --flipbook-brown: #3c2415;
+  --flipbook-pink: #e8788a;
+  --flipbook-red: #d94f5c;
+  --flipbook-gold: #f0c040;
+  --flipbook-sky: #87ceeb;
+  --flipbook-green: #7cba5f;
+  --flipbook-page: #fef9ef;
+  --flipbook-shadow: rgba(60, 36, 21, 0.2);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --color-flipbook-cream: var(--flipbook-cream);
+  --color-flipbook-warm: var(--flipbook-warm);
+  --color-flipbook-brown: var(--flipbook-brown);
+  --color-flipbook-pink: var(--flipbook-pink);
+  --color-flipbook-red: var(--flipbook-red);
+  --color-flipbook-gold: var(--flipbook-gold);
+  --color-flipbook-sky: var(--flipbook-sky);
+  --color-flipbook-green: var(--flipbook-green);
+  --color-flipbook-page: var(--flipbook-page);
+  --font-hand: 'Caveat', cursive;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: 'Caveat', cursive;
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Prevent pull-to-refresh and overscroll on mobile */
+html, body {
+  overscroll-behavior: none;
+  touch-action: none;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+/* Page flip animation helpers */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Sketch animation keyframes */
+@keyframes sketch-in {
+  from {
+    stroke-dashoffset: var(--path-length, 1000);
+    opacity: 0.3;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(-100vh) scale(0.5);
+    opacity: 0;
+  }
+}
+
+@keyframes gentle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+.animate-sketch-in {
+  animation: sketch-in 1.5s ease-out forwards;
+}
+
+.animate-float-up {
+  animation: float-up 4s ease-out forwards;
+}
+
+.animate-bounce-gentle {
+  animation: gentle-bounce 2s ease-in-out infinite;
 }
